@@ -1,0 +1,14 @@
+# Web Interface
+streamlit>=1.30.0
+
+# Vector Database & Embeddings
+chromadb>=0.4.20
+
+# HTTP Requests for Ollama API
+requests>=2.31.0
+
+# Environment Variables Management
+python-dotenv>=1.0.0
+
+# Data Manipulation & Display
+pandas>=2.0.0

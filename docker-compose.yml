@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nl2sql-app:
+    build: .
+    container_name: enterprise_nl2sql_app
+    ports:
+      - "8502:8501"
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434/api/generate
+      - MODEL_NAME=qwen2.5-coder
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Mount local chroma_db directory to container to persist and share vector search database
+      - ./chroma_db:/app/chroma_db
+    restart: always

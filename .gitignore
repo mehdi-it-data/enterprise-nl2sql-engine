@@ -1,0 +1,26 @@
+raw/
+# Virtual Environment
+venv/
+env/
+.venv/
+
+
+# Python cache & temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Environment Variables (Secrets)
+.env
+
+# Vector Database storage (ChromaDB local storage)
+chroma_db/
+chroma/
+
+# VS Code settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db

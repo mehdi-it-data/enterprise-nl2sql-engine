@@ -1,0 +1,26 @@
+# Git files
+.git
+.gitignore
+
+# Python virtual environment
+venv/
+env/
+__pycache__/
+*.pytemp/
+*.pyc
+*.pyo
+
+# Environment configuration (sensitive data)
+.env
+
+# Local database or heavy vector stores (if they are generated locally and shouldn't be baked into the image)
+chroma_db/
+
+# IDE files
+.vscode/
+.idea/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+README.md
