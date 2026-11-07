@@ -20,7 +20,7 @@ print(f"Question: {question}")
 print(f"Target SQL: {ground_truth_sql}\n")
 
 # Construct the path to the specific SQLite database file
-db_path = f"raw/dev/dev_20240627/dev_databases/dev_databases/{db_id}/{db_id}.sqlite"
+db_path = f"raw/dev/dev_20240627/dev_databases/{db_id}/{db_id}.sqlite"
 
 # Check if the database file exists and execute the ground truth query
 if os.path.exists(db_path):
