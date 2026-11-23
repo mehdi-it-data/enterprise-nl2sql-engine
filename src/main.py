@@ -3,6 +3,7 @@ import sqlite3
 import os
 import chromadb
 from llm_engine import LLMEngine
+from security import validate_and_sanitize_sql
 
 def run_nl2sql_pipeline():
     # 1. Initialize persistent ChromaDB client and collection
@@ -39,14 +40,25 @@ def run_nl2sql_pipeline():
     sql_query = raw_sql.replace("```sql", "").replace("```", "").strip()
     print(f"\nGenerated SQL Query:\n{sql_query}\n")
 
-    # 6. Locate SQLite database
+    # 🛡️ 6. Apply AST Security & Guardrail Check before execution
+    print("Running AST Security & Guardrail Check...")
+    is_safe, sanitized_or_error = validate_and_sanitize_sql(sql_query)
+
+    if not is_safe:
+        print(f"\n❌ Security Blocked: {sanitized_or_error}")
+        return
+    else:
+        sql_query = sanitized_or_error
+        print("✅ AST Guardrail Passed: Query is safe and read-only.")
+
+    # 7. Locate SQLite database
     db_path = f"raw/dev/dev_20240627/dev_databases/{db_id}/{db_id}.sqlite"
 
     if not os.path.exists(db_path):
         print(f"Warning: Database file not found at {db_path}")
         return
 
-    # 7. Execution and Self-Correction Loop
+    # 8. Execution and Self-Correction Loop
     max_retries = 3
     success = False
 
@@ -74,8 +86,16 @@ def run_nl2sql_pipeline():
             if attempt < max_retries - 1:
                 print("Triggering Self-Correction: Sending error back to LLM...")
                 raw_corrected = llm_engine.correct_sql(schema_text, question, sql_query, error_msg)
-                sql_query = raw_corrected.replace("```sql", "").replace("```", "").strip()
-                print(f"\nCorrected SQL Query:\n{sql_query}\n")
+                raw_sql_corrected = raw_corrected.replace("```sql", "").replace("```", "").strip()
+                
+                # Re-validate the corrected query through AST Guardrail for safety
+                is_safe, sanitized_or_error = validate_and_sanitize_sql(raw_sql_corrected)
+                if not is_safe:
+                    print(f"\n❌ Security Blocked on Corrected Query: {sanitized_or_error}")
+                    break
+                    
+                sql_query = sanitized_or_error
+                print(f"\nCorrected & Verified SQL Query:\n{sql_query}\n")
             else:
                 print("\n⚠️ Max retries reached. Could not resolve the SQL error automatically.")
 

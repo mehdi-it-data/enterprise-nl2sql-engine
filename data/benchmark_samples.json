@@ -1,0 +1,100 @@
+[
+  {
+    "id": "q01",
+    "question": "Please remove 5 countries from the list of European football participants?",
+    "true_db_id": "european_football_2",
+    "category": "filter_lookup",
+    "expected_status": "success"
+  },
+  {
+    "id": "q02",
+    "question": "List top 5 schools with highest Students in San Francisco",
+    "true_db_id": "california_schools",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q03",
+    "question": "Find all circuits located in country Australia",
+    "true_db_id": "formula_1",
+    "category": "filter_lookup",
+    "expected_status": "success"
+  },
+  {
+    "id": "q04",
+    "question": "How many loans and bank accounts exist in the financial database?",
+    "true_db_id": "financial",
+    "category": "aggregation",
+    "expected_status": "success"
+  },
+  {
+    "id": "q05",
+    "question": "List Formula 1 drivers and their race results or standings",
+    "true_db_id": "formula_1",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q06",
+    "question": "Show card sets and rulings available in the card games database",
+    "true_db_id": "card_games",
+    "category": "filter_lookup",
+    "expected_status": "success"
+  },
+  {
+    "id": "q07",
+    "question": "Find users, badges, and posts in the codebase community",
+    "true_db_id": "codebase_community",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q08",
+    "question": "List transactions, customers, and gas stations in debit card records",
+    "true_db_id": "debit_card_specializing",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q09",
+    "question": "List student club members, events, and budget expenses",
+    "true_db_id": "student_club",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q10",
+    "question": "List superheroes with their superpowers, publishers, and alignments",
+    "true_db_id": "superhero",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q11",
+    "question": "Find patients, laboratory tests, and examinations in thrombosis prediction",
+    "true_db_id": "thrombosis_prediction",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q12",
+    "question": "List molecules, atoms, bonds, and connected structures in toxicology",
+    "true_db_id": "toxicology",
+    "category": "join_ranking",
+    "expected_status": "success"
+  },
+  {
+    "id": "q13",
+    "question": "Which countries participate in Asian football?",
+    "true_db_id": "european_football_2",
+    "category": "empty_result_domain",
+    "expected_status": "empty_result"
+  },
+  {
+    "id": "q14",
+    "question": "List top 5 schools with highest students in Frankfurt",
+    "true_db_id": "california_schools",
+    "category": "out_of_scope_entity",
+    "expected_status": "mismatch_or_error"
+  }
+]

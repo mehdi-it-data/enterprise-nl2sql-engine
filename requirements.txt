@@ -1,3 +1,5 @@
+sqlglot>=20.0.0
+
 # Web Interface
 streamlit>=1.30.0
 
